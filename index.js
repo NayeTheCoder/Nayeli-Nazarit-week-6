@@ -31,28 +31,104 @@
 //---------- QUESTION 1 ----------
 // Pairs Maker
 
-// Write a function called pairsMaker(arr) that takes in an array as an argument. The function should return a 2-Dimensional array (an array of arrays) where the subarrays represent unique pairs of elements from the input array.
+// Write a function called pairsMaker(arr) that takes in an array as an argument. 
+//The function should return a 2-Dimensional array (an array of arrays) 
+//where the subarrays represent unique pairs of elements from the input array.
 
 // PUT YOUR CODE HERE
 
+function pairsMaker(arr) {
+  let pairsArray = [];
+
+  for(let i=0; i < arr.length; i++) {
+    for(let j=i +1; j < arr.length; j++) {
+      pairsArray.push([arr[i], arr[j]]);
+    }
+  }
+  return pairsArray;
+}
+let arr = ["shoes", "coat", "jeans"];
+console.log(pairsMaker(arr));
+
+let arr2 = ["Nayeli","Oscar","Mayra","Glenda","Damian"];
+console.log(pairsMaker(arr2));
 //---------- QUESTION 2 ----------
 // Two Sum
 
-// Write a function called twoSum(arr, target) that accepts an array and a target number as arguments. The function should return a boolean indicating if two distinct numbers of the array add up to the target value. You can assume that input array contains only unique numbers.
+// Write a function called twoSum(arr, target) that accepts an array and a target number as arguments. 
+//The function should return a boolean indicating if two distinct numbers of the array add up to the target value.
+// You can assume that input array contains only unique numbers.
 
 // PUT YOUR CODE HERE
 
+function twoSum(arr, target) {
+    let numSet = new Set();
+
+    for (let num of arr) {
+        let difference = target - num;
+
+        if (numSet.has(difference)) {
+            return true;
+        }
+        numSet.add(num);
+    }
+    return false;
+}
+
+
+let arr3 = [3, 2, 5, 6, 7];
+let target = 5;
+console.log(twoSum(arr, target));
 //---------- QUESTION 3 ----------
 // Pair Product
 
-// Write a function called pairProduct(arr, product) that accepts an array of numbers and a product (the result when two numbers were multiplied together) as arguments. The function should return a boolean indicating whether or not a pair of distinct elements in the array result in the product when multiplied together. You may assume that the input array contains unique elements.
+// Write a function called pairProduct(arr, product) that accepts an array of numbers 
+//and a product (the result when two numbers were multiplied together) as arguments. 
+//The function should return a boolean indicating whether or not a pair of distinct elements
+// in the array result in the product when multiplied together. 
+//You may assume that the input array contains unique elements.
 
 // PUT YOUR CODE HERE
+function pairProduct(arr, product) {
+    let numSet = new Set();
+
+    for (let num of arr) {
+        let requiredNum = product / num; 
+
+        if (numSet.has(requiredNum)) {
+            return true; 
+        }
+        numSet.add(num);
+    }
+    return false; 
+}
+let arr4 = [3,4,5,6];
+let product = 20;
+console.log(pairProduct(arr));
 
 //---------- QUESTION 4 ----------
 // Strange Sums
 
-// Write a function called strangeSums(arr) that accepts an array of numbers as an argument. The method should return a count of the number of distinct pairs of elements that have a sum of zero. You may assume that the input array contains unique elements.
+// Write a function called strangeSums(arr) that accepts an array of numbers as an argument. 
+//The method should return a count of the number of distinct pairs of elements that have a sum of zero. 
+//You may assume that the input array contains unique elements.
 
 // PUT YOUR CODE HERE
-console.log("Hi");
+function strangeSums(arr) {
+    let count = 0;
+    let numSet = new Set(arr);
+
+    for (let num of arr) {
+       
+        if (numSet.has(-num)) {
+            count++;
+        }
+    }
+
+    
+    return count / 2;
+}
+
+
+let arr5 = [1, 2, -1, -2, 3];
+console.log(strangeSums(arr));
